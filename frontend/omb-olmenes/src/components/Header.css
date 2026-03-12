@@ -1,0 +1,32 @@
+
+.header {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(
+            to right,
+            var(--color-primary),
+            var(--color-secondary)
+      );
+}
+
+.nav-top-right {
+      position: absolute;
+      right: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+}
+
+.header-left {
+      position: absolute;
+      left: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+}

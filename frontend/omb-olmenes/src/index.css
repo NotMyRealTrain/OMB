@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap");
+
+:root {
+	--color-primary: #e56506;
+	--color-secondary: #447b1f;
+	--header-height: 4rem;
+	--sidebar-width: 250px;
+}
+
+body {
+	font-family: "Source Sans 3", "Source Sans Pro", Arial, sans-serif;
+	margin: 0;
+}
+
+#root {
+	background: #FFFFFF;
+}
