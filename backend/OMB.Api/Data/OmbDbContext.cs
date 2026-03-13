@@ -195,7 +195,8 @@ public partial class OmbDbContext : DbContext
 
             entity.HasIndex(e => e.LocationId, "residents_location_id_idx");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnName("id");
             entity.Property(e => e.AllergenNotes)
                 .HasDefaultValueSql("''::text")
                 .HasColumnName("allergen_notes");
@@ -206,7 +207,8 @@ public partial class OmbDbContext : DbContext
             entity.Property(e => e.FirstName)
                 .HasColumnType("character varying")
                 .HasColumnName("first_name");
-            entity.Property(e => e.IddsiLevel).HasColumnName("iddsi_level");
+            entity.Property(e => e.IddsiLevel)
+                .HasColumnName("iddsi_level");
             entity.Property(e => e.IsActive)
                 .HasDefaultValue(true)
                 .HasColumnName("is_active");
@@ -216,7 +218,8 @@ public partial class OmbDbContext : DbContext
             entity.Property(e => e.LastName)
                 .HasColumnType("character varying")
                 .HasColumnName("last_name");
-            entity.Property(e => e.LocationId).HasColumnName("location_id");
+            entity.Property(e => e.LocationId)
+                .HasColumnName("location_id");
             entity.Property(e => e.UpdatedAt)
                 .HasDefaultValueSql("now()")
                 .HasColumnType("timestamp without time zone")
@@ -264,7 +267,8 @@ public partial class OmbDbContext : DbContext
                 .HasDefaultValueSql("now()")
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("created_at");
-            entity.Property(e => e.DefaultLocationId).HasColumnName("default_location_id");
+            entity.Property(e => e.DefaultLocationId)
+                .HasColumnName("default_location_id");
             entity.Property(e => e.DisplayNameFirst)
                 .HasColumnType("character varying")
                 .HasColumnName("display_name_first");
