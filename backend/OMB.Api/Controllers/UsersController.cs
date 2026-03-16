@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OMB.Api.Data;
-using OMB.Api.DTOs;
-using OMB.Api.Models;
+using OMB.Api.DTOs.Users;
 
 namespace OMB.Api.Controllers;
 

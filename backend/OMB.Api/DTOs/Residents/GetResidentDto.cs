@@ -1,15 +1,14 @@
-using System.ComponentModel;
+namespace OMB.Api.DTOs.Residents;
 
-namespace OMB.Api.DTOs;
-
-public class UpdateResidentDto
+public class GetResidentDto
 {
+    public long Id { get; set; }
+    public long LocationId { get; set; }
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
-    public long LocationId { get; set; }
     public int? IddsiLevel { get; set; }
-    [DefaultValue(false)] // standaardwaarde voor vegetarisch is false
     public bool IsVegetarian { get; set; }
     public string? AllergenNotes { get; set; }
     public bool IsActive { get; set; }
+    public DateTime UpdatedAt { get; set; }
 }

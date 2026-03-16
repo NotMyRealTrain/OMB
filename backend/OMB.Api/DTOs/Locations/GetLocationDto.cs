@@ -1,4 +1,4 @@
-namespace OMB.Api.DTOs;
+namespace OMB.Api.DTOs.Locations;
 
 public class GetLocationDto
 {

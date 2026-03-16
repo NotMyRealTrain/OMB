@@ -1,4 +1,4 @@
-export type Role = 'ADMIN' | 'KITCHEN' | 'HOUSE';
+export type Role = 'ADMIN' | 'KITCHEN' | 'HOUSE' | 'CARE_SPECIALIST';
 
 export type FakeUser = {
     displayName: string;

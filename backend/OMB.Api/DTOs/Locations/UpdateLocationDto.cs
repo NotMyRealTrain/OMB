@@ -1,6 +1,6 @@
-namespace OMB.Api.DTOs;
+namespace OMB.Api.DTOs.Locations;
 
-public class CreateLocationDto
+public class UpdateLocationDto
 {
     public string Name { get; set; } = null!;
     public string? Code { get; set; }
