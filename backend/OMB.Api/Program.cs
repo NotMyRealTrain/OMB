@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using OMB.Api.Data;
+using OMB.Api.Models;
+using OMB.Api.Enums;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +14,12 @@ builder.Services.AddOpenApi();
 
 // Database (PostgreSQL)
 builder.Services.AddDbContext<OmbDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"), o =>
+    {
+        o.MapEnum<RoleName>("role_name");
+        o.MapEnum<OrderStatus>("iddsi_level");
+        o.MapEnum<BirthdayMeal>("birthday_meal");
+    }));
 
 // CORS (frontend toestaan)
 builder.Services.AddCors(options =>

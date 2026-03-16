@@ -55,7 +55,7 @@ public partial class OmbDbContext : DbContext
                 .HasColumnName("code");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("now()")
-                .HasColumnType("timestamp without time zone")
+                .HasColumnType("timestamp with time zone")
                 .HasColumnName("created_at");
             entity.Property(e => e.Name)
                 .HasColumnType("character varying")
@@ -74,10 +74,11 @@ public partial class OmbDbContext : DbContext
 
             entity.HasIndex(e => e.WeekId, "orders_week_id_idx");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnName("id");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("now()")
-                .HasColumnType("timestamp without time zone")
+                .HasColumnType("timestamp with time zone")
                 .HasColumnName("created_at");
             entity.Property(e => e.GroupLeaderName)
                 .HasColumnType("character varying")
@@ -86,20 +87,24 @@ public partial class OmbDbContext : DbContext
                 .HasColumnName("status")
                 .HasColumnType("order_status")
                 .HasDefaultValueSql("'DRAFT'::order_status");
-            entity.Property(e => e.LocationId).HasColumnName("location_id");
+            entity.Property(e => e.LocationId)
+                .HasColumnName("location_id");
             entity.Property(e => e.LockedAt)
-                .HasColumnType("timestamp without time zone")
+                .HasColumnType("timestamp with time zone")
                 .HasColumnName("locked_at");
-            entity.Property(e => e.LockedByUserId).HasColumnName("locked_by_user_id");
+            entity.Property(e => e.LockedByUserId)
+                .HasColumnName("locked_by_user_id");
             entity.Property(e => e.SubmittedAt)
-                .HasColumnType("timestamp without time zone")
+                .HasColumnType("timestamp with time zone")
                 .HasColumnName("submitted_at");
-            entity.Property(e => e.SubmittedByUserId).HasColumnName("submitted_by_user_id");
+            entity.Property(e => e.SubmittedByUserId)
+                .HasColumnName("submitted_by_user_id");
             entity.Property(e => e.UpdatedAt)
                 .HasDefaultValueSql("now()")
-                .HasColumnType("timestamp without time zone")
+                .HasColumnType("timestamp with time zone")
                 .HasColumnName("updated_at");
-            entity.Property(e => e.WeekId).HasColumnName("week_id");
+            entity.Property(e => e.WeekId)
+                .HasColumnName("week_id");
 
             entity.HasOne(d => d.Location).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.LocationId)
@@ -128,7 +133,8 @@ public partial class OmbDbContext : DbContext
 
             entity.HasIndex(e => new { e.OrderId, e.ServiceDate }, "order_day_entries_order_id_service_date_idx").IsUnique();
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnName("id");
             entity.Property(e => e.ExtraMeals)
                 .HasDefaultValue(0)
                 .HasColumnName("extra_meals");
@@ -142,8 +148,10 @@ public partial class OmbDbContext : DbContext
                 .HasColumnName("birthday")
                 .HasColumnType("birthday_meal")
                 .HasDefaultValueSql("'NONE'::birthday_meal");
-            entity.Property(e => e.OrderId).HasColumnName("order_id");
-            entity.Property(e => e.ServiceDate).HasColumnName("service_date");
+            entity.Property(e => e.OrderId)
+                .HasColumnName("order_id");
+            entity.Property(e => e.ServiceDate)
+                .HasColumnName("service_date");
 
             entity.HasOne(d => d.Order).WithMany(p => p.OrderDayEntries)
                 .HasForeignKey(d => d.OrderId)
@@ -161,10 +169,14 @@ public partial class OmbDbContext : DbContext
 
             entity.HasIndex(e => new { e.OrderId, e.ServiceDate }, "order_resident_day_entries_order_id_service_date_idx");
 
-            entity.Property(e => e.OrderId).HasColumnName("order_id");
-            entity.Property(e => e.ResidentId).HasColumnName("resident_id");
-            entity.Property(e => e.ServiceDate).HasColumnName("service_date");
-            entity.Property(e => e.LocationId).HasColumnName("location_id");
+            entity.Property(e => e.OrderId)
+                .HasColumnName("order_id");
+            entity.Property(e => e.ResidentId)
+                .HasColumnName("resident_id");
+            entity.Property(e => e.ServiceDate)
+                .HasColumnName("service_date");
+            entity.Property(e => e.LocationId)
+                .HasColumnName("location_id");
             entity.Property(e => e.Present)
                 .HasDefaultValue(true)
                 .HasColumnName("present");
@@ -202,7 +214,7 @@ public partial class OmbDbContext : DbContext
                 .HasColumnName("allergen_notes");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("now()")
-                .HasColumnType("timestamp without time zone")
+                .HasColumnType("timestamp with time zone")
                 .HasColumnName("created_at");
             entity.Property(e => e.FirstName)
                 .HasColumnType("character varying")
@@ -222,7 +234,7 @@ public partial class OmbDbContext : DbContext
                 .HasColumnName("location_id");
             entity.Property(e => e.UpdatedAt)
                 .HasDefaultValueSql("now()")
-                .HasColumnType("timestamp without time zone")
+                .HasColumnType("timestamp with time zone")
                 .HasColumnName("updated_at");
 
             entity.HasOne(d => d.Location).WithMany(p => p.Residents)
@@ -237,7 +249,8 @@ public partial class OmbDbContext : DbContext
 
             entity.ToTable("roles");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnName("id");
 
             entity.Property(e => e.Name)
                 .HasColumnName("name")
@@ -256,7 +269,8 @@ public partial class OmbDbContext : DbContext
 
             entity.HasIndex(e => e.Email, "users_email_key").IsUnique();
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnName("id");
             entity.Property(e => e.AuthProvider)
                 .HasColumnType("character varying")
                 .HasColumnName("auth_provider");
@@ -265,7 +279,7 @@ public partial class OmbDbContext : DbContext
                 .HasColumnName("auth_subject");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("now()")
-                .HasColumnType("timestamp without time zone")
+                .HasColumnType("timestamp with time zone")
                 .HasColumnName("created_at");
             entity.Property(e => e.DefaultLocationId)
                 .HasColumnName("default_location_id");
@@ -316,7 +330,7 @@ public partial class OmbDbContext : DbContext
             entity.Property(e => e.RoleId).HasColumnName("role_id");
             entity.Property(e => e.AssignedAt)
                 .HasDefaultValueSql("now()")
-                .HasColumnType("timestamp without time zone")
+                .HasColumnType("timestamp with time zone")
                 .HasColumnName("assigned_at");
 
             entity.HasOne(d => d.Role).WithMany(p => p.UserRoles)

@@ -17,6 +17,7 @@ public class ResidentsController : ControllerBase
         _context = context;
     }
 
+    // alle bewoners ophalen, inclusief hun locatie
     [HttpGet]
     public async Task<IActionResult> GetResidents()
     {
@@ -39,6 +40,7 @@ public class ResidentsController : ControllerBase
         return Ok(residents);
     }
 
+    // specifieke bewoner ophalen op ID, inclusief locatie
     [HttpGet("{id}")]
     public async Task<IActionResult> GetResident(long id)
     {
@@ -65,6 +67,7 @@ public class ResidentsController : ControllerBase
         return Ok(result);
     }
 
+    // bewoners zoeken op naam (voornaam + achternaam), case-insensitive en gedeeltelijke overeenkomsten toestaan
     [HttpGet("search")]
     public async Task<IActionResult> SearchResidents([FromQuery] string? name)
     {
@@ -94,6 +97,7 @@ public class ResidentsController : ControllerBase
         return Ok(residents);
     }
 
+    // nieuwe bewoner aanmaken
     [HttpPost]
     public async Task<IActionResult> CreateResident(CreateResidentDto dto)
     {
@@ -124,19 +128,24 @@ public class ResidentsController : ControllerBase
         });
     }
 
+    // bestaande bewoner bijwerken
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateResident(long id, UpdateResidentDto dto)
     {
-        var locationExists = await _context.Locations.AnyAsync(l => l.Id == dto.LocationId);
-        if (!locationExists)        {
-            return BadRequest($"Location with ID {dto.LocationId} does not exist.");
-        }
-
         var resident = await _context.Residents.FindAsync(id);
 
         if (resident == null)
         {
             return NotFound();
+        }
+
+        if (resident.LocationId != dto.LocationId)
+        {
+            var locationExists = await _context.Locations.AnyAsync(l => l.Id == dto.LocationId);
+            if (!locationExists)
+            {
+                return BadRequest($"Location with ID {dto.LocationId} does not exist.");
+            }
         }
 
         resident.FirstName = dto.FirstName;
@@ -164,6 +173,7 @@ public class ResidentsController : ControllerBase
         });
     }
 
+    // bewoner verwijderen
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteResident(long id)
     {
